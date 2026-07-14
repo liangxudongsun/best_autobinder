@@ -526,7 +526,7 @@ class ScriptModifier {
     }
 
     static insertProperty(content: string, decl: string): string {
-        const classMatch = content.match(/export\s+class\s+\w+\s+extends\s+\w+\s*{/);
+        const classMatch = content.match(/export\s+(?:default\s+)?class\s+\w+\s+extends\s+[\s\S]*?\s*{/);
         if (classMatch) {
             const pos = classMatch.index! + classMatch[0].length;
             return content.slice(0, pos) + '\n' + decl + content.slice(pos);
